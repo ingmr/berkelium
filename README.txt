@@ -6,6 +6,10 @@ detailed overview.
 
 ==== Building:
 
+For all platforms, make sure you have the submodules:
+
+    git submodule update --init --recursive
+
 For Windows instructions, see WINDOWS-BUILDING.txt in the win32/ folder.
 
 For Mac or Linux, first use the automated script to build chromium:
