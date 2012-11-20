@@ -287,6 +287,13 @@ elif [ x"${platform}" = x"Linux" ]; then
 
             case "$DISTRO" in
                 debian )
+		    # Default install of Debian doesn't make
+		    # msttcorefonts available, warn the user if we
+		    # have a problem installing it.
+		    if [[ -z `apt-cache search msttcorefonts` ]] ; then
+			echo "ERROR: Couldn't install msttcorefonts. You might need to add 'contrib non-free' to the end of a line in your /etc/apt/source.list and run apt-get update"
+			exit 1
+		    fi
                     sudo apt-get install subversion pkg-config python ruby perl g++ g++-multilib
                     sudo apt-get install bison flex gperf libnss3-dev libnspr4-dev libgtk2.0-dev libnspr4-0d libasound2-dev
                     sudo apt-get install msttcorefonts libgconf2-dev libcairo2-dev libdbus-1-dev
