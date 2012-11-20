@@ -1,0 +1,117 @@
+Index: base/file_util.h
+===================================================================
+--- base/file_util.h	(revision 87952)
++++ base/file_util.h	(working copy)
+@@ -36,6 +36,7 @@
+ #include "base/eintr_wrapper.h"
+ #include "base/file_descriptor_posix.h"
+ #include "base/logging.h"
++#include <unistd.h>
+ #endif
+ 
+ namespace base {
+Index: ipc/file_descriptor_set_posix.cc
+===================================================================
+--- ipc/file_descriptor_set_posix.cc	(revision 87952)
++++ ipc/file_descriptor_set_posix.cc	(working copy)
+@@ -10,6 +10,10 @@
+ #include "base/eintr_wrapper.h"
+ #include "base/logging.h"
+ 
++#if defined(OS_POSIX)
++#include <unistd.h>
++#endif
++
+ FileDescriptorSet::FileDescriptorSet()
+     : consumed_descriptor_highwater_(0) {
+ }
+Index: seccompsandbox/library.h
+===================================================================
+--- seccompsandbox/library.h	(revision 153)
++++ seccompsandbox/library.h	(working copy)
+@@ -29,6 +29,10 @@
+ #error Unsupported target platform
+ #endif
+ 
++//#if defined(OS_POSIX)
++#include <unistd.h>
++//#endif
++
+ struct SyscallTable;
+ namespace playground {
+ 
+Index: base/message_pump_libevent.cc
+===================================================================
+--- base/message_pump_libevent.cc	(revision 87952)
++++ base/message_pump_libevent.cc	(working copy)
+@@ -20,6 +20,10 @@
+ #include "third_party/libevent/event.h"
+ #endif
+ 
++#if defined(OS_POSIX)
++#include <unistd.h>
++#endif
++
+ // Lifecycle of struct event
+ // Libevent uses two main data structures:
+ // struct event_base (of which there is one per message pump), and
+Index: base/time_posix.cc
+===================================================================
+--- base/time_posix.cc	(revision 87952)
++++ base/time_posix.cc	(working copy)
+@@ -12,6 +12,10 @@
+ #include "base/basictypes.h"
+ #include "base/logging.h"
+ 
++#if defined(OS_POSIX)
++#include <unistd.h>
++#endif
++
+ namespace base {
+ 
+ struct timespec TimeDelta::ToTimeSpec() const {
+Index: base/platform_file_posix.cc
+===================================================================
+--- base/platform_file_posix.cc	(revision 87952)
++++ base/platform_file_posix.cc	(working copy)
+@@ -13,6 +13,10 @@
+ #include "base/logging.h"
+ #include "base/utf_string_conversions.h"
+ 
++#if defined(OS_POSIX)
++#include <unistd.h>
++#endif
++
+ namespace base {
+ 
+ #if defined(OS_OPENBSD) || defined(OS_FREEBSD) || \
+Index: chrome/browser/diagnostics/diagnostics_main.cc
+===================================================================
+--- chrome/browser/diagnostics/diagnostics_main.cc	(revision 87952)
++++ chrome/browser/diagnostics/diagnostics_main.cc	(working copy)
+@@ -23,6 +23,10 @@
+ #include "chrome/common/chrome_paths.h"
+ #include "ui/base/ui_base_paths.h"
+ 
++#if defined(OS_POSIX)
++#include <unistd.h>
++#endif
++
+ namespace {
+ // This is a minimalistic interface to wrap the platform console.  This will be
+ // eventually replaced by a view that can be subclassed for each platform and
+Index: chrome/browser/policy/policy_path_parser_posix.cc
+===================================================================
+--- chrome/browser/policy/policy_path_parser_posix.cc	(revision 87952)
++++ chrome/browser/policy/policy_path_parser_posix.cc	(working copy)
+@@ -8,6 +8,10 @@
+ 
+ #include "base/logging.h"
+ 
++#if defined(OS_POSIX)
++#include <unistd.h>
++#endif
++
+ namespace policy {
+ 
+ namespace path_parser {
