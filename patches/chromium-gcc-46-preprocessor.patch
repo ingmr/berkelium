@@ -1,0 +1,13 @@
+Index: third_party/WebKit/Source/WebCore/dom/make_names.pl
+===================================================================
+--- third_party/WebKit/Source/WebCore/dom/make_names.pl	(revision 86868)
++++ third_party/WebKit/Source/WebCore/dom/make_names.pl	(working copy)
+@@ -65,7 +65,7 @@
+ } else {
+     $gccLocation = "/usr/bin/gcc";
+ }
+-my $preprocessor = $gccLocation . " -E -P -x c++";
++my $preprocessor = $gccLocation . " -E -x c++";
+ 
+ GetOptions(
+     'tags=s' => \$tagsFile, 
