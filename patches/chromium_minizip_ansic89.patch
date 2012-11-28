@@ -1,0 +1,17 @@
+Index: third_party/zlib/contrib/minizip/ioapi.h
+===================================================================
+--- third_party/zlib/contrib/minizip/ioapi.h	(revision 87952)
++++ third_party/zlib/contrib/minizip/ioapi.h	(working copy)
+@@ -31,6 +31,12 @@
+ #endif
+ #endif
+ 
++#if PRE_ANSI_C89
++#  define OF( args ) ()
++#else
++#  define OF( args ) args
++#endif
++
+ #ifdef __cplusplus
+ extern "C" {
+ #endif
