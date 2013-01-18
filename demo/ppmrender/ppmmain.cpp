@@ -42,6 +42,7 @@
 #include <time.h>
 #include <windows.h>
 #else
+#include <unistd.h>
 #include <sys/select.h>
 #endif
 #include <sstream>
